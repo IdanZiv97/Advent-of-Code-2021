@@ -10,6 +10,7 @@ class dive
 {
 private:
     int _position[2] = {0, 0};
+    int _aim = 0;
     vector<pair<string, int > > _instructions;
 public:
     //constructor
@@ -33,10 +34,11 @@ int dive::calculateDivePosition() {
         string step = it.first;
         if (step == "forward") {
             _position[0] += it.second;
+            _position[1] += _aim * it.second;
         } else if (step == "up") {
-            _position[1] -= it.second;
+            _aim -= it.second;
         } else if (step == "down") { // step == "down"
-            _position[1] += it.second;
+            _aim += it.second;
         }
     }
     // calculate the product of horizontal and depth
